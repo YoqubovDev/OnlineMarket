@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
+
     protected static function boot()
     {
         parent::boot();
