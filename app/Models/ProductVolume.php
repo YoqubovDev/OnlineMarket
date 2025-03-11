@@ -2,18 +2,12 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 class ProductVolume extends Model
 {
-    protected $fillable = [
-        'name',
+    protected $fillable=[
+        'product_id',
+        'volume_id'
     ];
-
-    public function products()
-    {
-        return $this->hasMany(Products::class, 'product_volume');
-    }
-
 }

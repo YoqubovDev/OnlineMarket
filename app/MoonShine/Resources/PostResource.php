@@ -8,7 +8,7 @@ use App\Models\PostCategory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Post;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use MoonShine\Laravel\Fields\Relationships\BelongsTo;
 use MoonShine\Laravel\Resources\ModelResource;
 use MoonShine\UI\Components\Layout\Box;
 use MoonShine\UI\Fields\Date;
@@ -52,7 +52,7 @@ class PostResource extends ModelResource
                 Text::make('Title', 'title'),
                 Text::make('Content'),
                 Image::make('Image', 'image'),
-                \MoonShine\Laravel\Fields\Relationships\BelongsTo::make(
+                BelongsTo::make(
                     'Category',
                     'postCategory',
                     fn($item)=>"$item->id. $item->name",
@@ -74,7 +74,7 @@ class PostResource extends ModelResource
             Text::make('Title'),
             Text::make('Content'),
             Image::make('Image'),
-            \MoonShine\Laravel\Fields\Relationships\BelongsTo::make('Category',
+            BelongsTo::make('Category',
                 'postCategory',
                 fn($item)=>"$item->id. $item->name",
                 PostCategoryResource::class)

@@ -5,22 +5,24 @@ declare(strict_types=1);
 namespace App\MoonShine\Resources;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Products;
+use App\Models\Product;
 
+use MoonShine\Laravel\Fields\Relationships\BelongsTo;
 use MoonShine\Laravel\Resources\ModelResource;
 use MoonShine\UI\Components\Layout\Box;
 use MoonShine\UI\Fields\ID;
 use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\Contracts\UI\ComponentContract;
+use MoonShine\UI\Fields\Text;
 
 /**
- * @extends ModelResource<Products>
+ * @extends ModelResource<Product>
  */
 class ProductResource extends ModelResource
 {
-    protected string $model = Products::class;
+    protected string $model = Product::class;
 
-    protected string $title = 'Products';
+    protected string $title = 'Product';
 
     /**
      * @return list<FieldContract>
@@ -29,13 +31,13 @@ class ProductResource extends ModelResource
     {
         return [
             ID::make()->sortable(),
-            \MoonShine\UI\Fields\Text::make('name')->sortable(),
-            \MoonShine\UI\Fields\Text::make('description')->sortable(),
-            \MoonShine\UI\Fields\Text::make('price')->sortable(),
-            \MoonShine\UI\Fields\Text::make('sale_price')->sortable(),
-            \MoonShine\UI\Fields\Text::make('category_id')->sortable(),
-            \MoonShine\UI\Fields\Text::make('product_volume')->sortable(),
-            \MoonShine\UI\Fields\Text::make('stock_quantity')->sortable(),
+            Text::make('name')->sortable(),
+            Text::make('description')->sortable(),
+            Text::make('price')->sortable(),
+            Text::make('sale_price')->sortable(),
+            Text::make('category_id')->sortable(),
+            Text::make('product_volume')->sortable(),
+            Text::make('stock_quantity')->sortable(),
         ];
     }
 
@@ -47,13 +49,27 @@ class ProductResource extends ModelResource
         return [
             Box::make([
                 ID::make(),
-                \MoonShine\UI\Fields\Text::make('name'),
-                \MoonShine\UI\Fields\Text::make('description'),
-                \MoonShine\UI\Fields\Text::make('price'),
-                \MoonShine\UI\Fields\Text::make('sale_price'),
-                \MoonShine\UI\Fields\Text::make('category_id'),
-                \MoonShine\UI\Fields\Text::make('product_volume'),
-                \MoonShine\UI\Fields\Text::make('stock_quantity'),
+                Text::make('Name'),
+                Text::make('Description'),
+                Text::make('Price'),
+                Text::make('Sale price'),
+                BelongsTo::make(
+                    'Category ID and Name',
+                    'productCategory',
+                    fn($item)=>"$item->id. $item->name",
+                    CategoryResource::class)
+                    ->afterFill(
+                        fn($field) => $field->setColumn('category_id')
+                    ),
+                BelongsTo::make(
+                    'Product volume',
+                    'volume',
+                    fn($item)=>"$item->id. $item->name",
+                    VolumeResource::class)
+                    ->afterFill(
+                        fn($field) => $field->setColumn('product_volume_id')
+                    ),
+                Text::make('Stock quantity'),
             ])
         ];
     }
@@ -65,18 +81,18 @@ class ProductResource extends ModelResource
     {
         return [
             ID::make(),
-            \MoonShine\UI\Fields\Text::make('name'),
-            \MoonShine\UI\Fields\Text::make('description'),
-            \MoonShine\UI\Fields\Text::make('price'),
-            \MoonShine\UI\Fields\Text::make('sale_price'),
-            \MoonShine\UI\Fields\Text::make('category_id'),
-            \MoonShine\UI\Fields\Text::make('product_volume'),
-            \MoonShine\UI\Fields\Text::make('stock_quantity'),
+            Text::make('Name'),
+            Text::make('Description'),
+            Text::make('Price'),
+            Text::make('Sale price'),
+            Text::make('Category name'),
+            Text::make('Product volume'),
+            Text::make('Stock quantity'),
         ];
     }
 
     /**
-     * @param Products $item
+     * @param Product $item
      *
      * @return array<string, string[]|string>
      * @see https://laravel.com/docs/validation#available-validation-rules

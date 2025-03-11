@@ -7,17 +7,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        Schema::create('Categories', function (Blueprint $table) {
-            $table->id('category_id');
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id();
             $table->string('name', 100)->unique();
-            $table->text('description')->nullable();
-            $table->foreignId('parent_category_id')->nullable()->constrained('Categories', 'category_id')->onDelete('cascade');
+            $table->string('slug', 100)->unique();
+            $table->foreignId('parent_category_id')->nullable()->constrained('categories', 'id')->onDelete('cascade');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('Categories');
+        Schema::dropIfExists('categories');
     }
 };

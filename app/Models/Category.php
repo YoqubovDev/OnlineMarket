@@ -4,20 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 
 class Category extends Model
 {
-    use HasFactory;
 
-    protected $table = 'Categories';
-    protected $primaryKey = 'category_id';
+    protected $table = 'categories';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'name',
-        'description',
         'parent_category_id',
+        'slug'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static ::creating(function ($model){
+            $model->slug=Str::slug($model->name);
+        });
+    }
 
 
     public function parentCategory()
@@ -33,6 +41,6 @@ class Category extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class, 'category_id');
+        return $this->hasMany(Product::class, 'id');
     }
 }
