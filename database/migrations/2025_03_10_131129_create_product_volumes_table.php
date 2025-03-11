@@ -9,7 +9,7 @@ class CreateProductVolumesTable extends Migration
     {
         Schema::create('product_volumes', function (Blueprint $table) {
             $table->id();
-            $table->string('volume');
+            $table->string('name');
             $table->timestamps();
         });
     }

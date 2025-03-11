@@ -50,14 +50,6 @@ class VolumeResource extends ModelResource
             Box::make([
                 ID::make(),
                 Text::make('Name','name'),
-                BelongsTo::make(
-                    'Volume',
-                    'volume',
-                    fn($item)=>"$item->id. $item->name",
-                    VolumeResource::class)
-                    ->afterFill(
-                        fn($field) => $field->setColumn('product_volume_id')
-                    ),
             ])
         ];
     }
@@ -71,8 +63,6 @@ class VolumeResource extends ModelResource
             ID::make(),
             Text::make('Name', 'name'),
             Date::make('Created At', 'created_at'),
-//            HasMany::make('Categories', '', fn($item)=>"$item->id. $item->name",
-//                CategoryResource::class),
 
         ];
     }

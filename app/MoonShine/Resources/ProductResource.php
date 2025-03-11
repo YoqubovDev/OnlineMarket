@@ -57,18 +57,12 @@ class ProductResource extends ModelResource
                     'Category ID and Name',
                     'category',
                     fn($item)=>"$item->id. $item->name",
-                    CategoryResource::class)
-                    ->afterFill(
-                        fn($field) => $field->setColumn('category_id')
-                    ),
+                    CategoryResource::class),
                 BelongsTo::make(
                     'Product volume',
                     'volume',
                     fn($item)=>"$item->id. $item->name",
-                    VolumeResource::class)
-                    ->afterFill(
-                        fn($field) => $field->setColumn('product_volume_id')
-                    ),
+                    VolumeResource::class),
                 Text::make('Stock quantity'),
             ])
         ];
@@ -85,8 +79,16 @@ class ProductResource extends ModelResource
             Text::make('Description'),
             Text::make('Price'),
             Text::make('Sale price'),
-            Text::make('Category name'),
-            Text::make('Product volume'),
+            BelongsTo::make(
+                'Category ID and Name',
+                'category',
+                fn($item)=>"$item->id. $item->name",
+                CategoryResource::class),
+            BelongsTo::make(
+                'Product volume',
+                'volume',
+                fn($item)=>"$item->id. $item->name",
+                VolumeResource::class),
             Text::make('Stock quantity'),
         ];
     }

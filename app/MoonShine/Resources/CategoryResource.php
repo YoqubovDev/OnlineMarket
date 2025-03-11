@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
+use MoonShine\Laravel\Fields\Relationships\BelongsTo;
 use \MoonShine\UI\Fields\Text;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
@@ -32,6 +33,8 @@ class CategoryResource extends ModelResource
         return [
             ID::make()->sortable(),
             Text::make('name'),
+            BelongsTo::make('parent', 'parent', fn($item)=>"$item->id. $item->name",CategoryResource::class)
+
 
 
         ];
@@ -46,6 +49,7 @@ class CategoryResource extends ModelResource
             Box::make([
                 ID::make(),
                 Text::make('name'),
+                BelongsTo::make('parent', 'parent', fn($item)=>"$item->id. $item->name",CategoryResource::class)
             ])
         ];
     }
@@ -58,6 +62,7 @@ class CategoryResource extends ModelResource
         return [
             ID::make(),
             Text::make('name'),
+            BelongsTo::make('parent', 'parent', fn($item)=>"$item->id. $item->name",CategoryResource::class)
         ];
     }
 
