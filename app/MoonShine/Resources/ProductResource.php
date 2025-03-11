@@ -55,7 +55,7 @@ class ProductResource extends ModelResource
                 Text::make('Sale price'),
                 BelongsTo::make(
                     'Category ID and Name',
-                    'productCategory',
+                    'category',
                     fn($item)=>"$item->id. $item->name",
                     CategoryResource::class)
                     ->afterFill(

@@ -25,7 +25,7 @@ class VolumeResource extends ModelResource
 {
     protected string $model = Volume::class;
 
-    protected string $title = 'Volumes';
+    protected string $title = 'Volume';
 
     /**
      * @return list<FieldContract>

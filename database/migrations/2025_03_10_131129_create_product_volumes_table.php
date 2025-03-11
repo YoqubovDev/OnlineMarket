@@ -1,31 +1,22 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
-class ProductVolume extends Model {
-
+class CreateProductVolumesTable extends Migration
+{
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('product_volumes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('volume');
             $table->timestamps();
         });
     }
 
-    public function product() {
-        return $this->belongsTo(Product::class);
-    }
-
-    public function volume() {
-        return $this->belongsTo(Volume::class);
+    public function down(): void
+    {
+        Schema::dropIfExists('product_volumes');
     }
 }
 
