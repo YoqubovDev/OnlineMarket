@@ -43,4 +43,8 @@ class Category extends Model
     {
         return $this->hasMany(Product::class, 'id');
     }
+    public function parent()
+    {
+
+    }
 }
