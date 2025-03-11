@@ -11,34 +11,19 @@ class Category extends Model
 {
 
     protected $table = 'categories';
-    protected $primaryKey = 'id';
+
 
     protected $fillable = [
         'name',
-        'parent_category_id',
-        'slug'
+        'category_id',
     ];
 
-    protected static function boot()
+
+
+    public function parent()
     {
-        parent::boot();
-        static ::creating(function ($model){
-            $model->slug=Str::slug($model->name);
-        });
+        return $this->belongsTo(Category::class, 'parent_id', 'id');
     }
-
-
-//    public function category()
-//    {
-//        return $this->belongsTo(Category::class, 'parent_category_id');
-//    }
-
-    public function subCategories()
-    {
-        return $this->hasMany(Category::class, 'parent_category_id');
-    }
-
-
     public function products()
     {
         return $this->hasMany(Product::class, 'id');

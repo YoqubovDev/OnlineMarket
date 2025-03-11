@@ -18,7 +18,6 @@ class Product extends Model
             'category_id',
             'product_volume',
             'stock_quantity',
-            'slug',
         ];
 
     public function category()
@@ -29,6 +28,6 @@ class Product extends Model
 
     public function volume()
     {
-        return $this->belongsTo(Volume::class, 'product_volume_id', 'id');
+        return $this->belongsTo(Volume::class, 'volume_id', 'id');
     }
 }

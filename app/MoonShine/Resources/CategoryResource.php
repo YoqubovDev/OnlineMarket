@@ -33,7 +33,7 @@ class CategoryResource extends ModelResource
         return [
             ID::make()->sortable(),
             Text::make('name'),
-            BelongsTo::make('parent', 'parent', fn($item)=>"$item->id. $item->name",CategoryResource::class)
+            Text::make('parent_id')->nullable(),
 
 
 
@@ -62,7 +62,7 @@ class CategoryResource extends ModelResource
         return [
             ID::make(),
             Text::make('name'),
-            BelongsTo::make('parent', 'parent', fn($item)=>"$item->id. $item->name",CategoryResource::class)
+            Text::make('parent_id')->nullable(),
         ];
     }
 

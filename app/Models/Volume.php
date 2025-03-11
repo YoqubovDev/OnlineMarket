@@ -11,15 +11,7 @@ class Volume extends Model
     protected $table = 'product_volumes';
     protected $fillable = [
         'name',
-        'slug'
     ];
-    protected static function boot()
-    {
-        parent::boot();
-        static ::creating(function ($model){
-            $model->slug=Str::slug($model->name);
-        });
-    }
 
     public function products()
     {

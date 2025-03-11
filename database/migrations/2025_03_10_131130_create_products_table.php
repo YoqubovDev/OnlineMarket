@@ -17,9 +17,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->float('price');
             $table->float('sale_price')->nullable();
-            $table->integer('category_id')->nullable();
-            $table->float('stock_quantity');
             $table->foreignId('category_id')->constrained('categories');
+            $table->float('stock_quantity');
             $table->foreignId('volume_id')->constrained('product_volumes');
             $table->timestamps();
         });

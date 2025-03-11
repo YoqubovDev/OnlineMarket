@@ -102,13 +102,7 @@ class ProductResource extends ModelResource
     protected function rules(mixed $item): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'price' => 'required|string|max:255',
-            'sale_price' => 'required|string|max:255',
-            'category_id' => 'required|string|max:255',
-            'product_volume' => 'required|string|max:255',
-            'stock_quantity' => 'required|string|max:255',
+
         ];
     }
 }
