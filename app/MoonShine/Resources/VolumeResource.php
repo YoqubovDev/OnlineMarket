@@ -61,7 +61,8 @@ class VolumeResource extends ModelResource
             ID::make(),
             Text::make('Name', 'name'),
             Date::make('Created At', 'created_at'),
-
+//            HasMany::make('Products', 'products', fn($item)=>"$item->id. $item->name",
+//                ProductResource::class),
         ];
     }
 

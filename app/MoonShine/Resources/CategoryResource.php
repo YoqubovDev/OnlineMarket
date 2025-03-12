@@ -59,7 +59,9 @@ class CategoryResource extends ModelResource
         return [
             ID::make(),
             Text::make('name'),
-            Text::make('parent_id')->nullable()->default(null),
+            Text::make('parent_id')->nullable(),
+            HasMany::make('Products', 'products', fn($item)=>"$item->id. $item->name",
+                ProductResource::class),
         ];
     }
 

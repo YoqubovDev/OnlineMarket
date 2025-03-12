@@ -35,8 +35,16 @@ class ProductResource extends ModelResource
             Text::make('description')->sortable(),
             Text::make('price')->sortable(),
             Text::make('sale_price')->sortable(),
-            Text::make('category_id')->sortable(),
-            Text::make('product_volume')->sortable(),
+            BelongsTo::make(
+                'Category ID and Name',
+                'category',
+                fn($item)=>"$item->name",
+                CategoryResource::class),
+            BelongsTo::make(
+                'Product volume',
+                'volume',
+                fn($item)=>"$item->name",
+                VolumeResource::class),
             Text::make('stock_quantity')->sortable(),
         ];
     }
@@ -57,12 +65,12 @@ class ProductResource extends ModelResource
                     'Category ID and Name',
                     'category',
                     fn($item)=>"$item->id. $item->name",
-                    CategoryResource::class),
+                    CategoryResource::class)->nullable(),
                 BelongsTo::make(
                     'Product volume',
                     'volume',
                     fn($item)=>"$item->id. $item->name",
-                    VolumeResource::class),
+                    VolumeResource::class)->nullable(),
                 Text::make('Stock quantity'),
             ])
         ];
