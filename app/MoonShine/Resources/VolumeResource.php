@@ -36,8 +36,6 @@ class VolumeResource extends ModelResource
             ID::make()->sortable(),
             Text::make('Name', 'name')->sortable(),
             Date::make('Created At', 'created_at')->sortable(),
-
-
         ];
     }
 

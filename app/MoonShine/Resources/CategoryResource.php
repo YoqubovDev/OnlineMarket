@@ -33,10 +33,7 @@ class CategoryResource extends ModelResource
         return [
             ID::make()->sortable(),
             Text::make('name'),
-            Text::make('parent_id')->nullable(),
-
-
-
+            Text::make('parent_id')->nullable()->default(null),
         ];
     }
 
@@ -62,7 +59,7 @@ class CategoryResource extends ModelResource
         return [
             ID::make(),
             Text::make('name'),
-            Text::make('parent_id')->nullable(),
+            Text::make('parent_id')->nullable()->default(null),
         ];
     }
 
