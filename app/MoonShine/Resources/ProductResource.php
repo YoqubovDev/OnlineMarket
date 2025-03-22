@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\MoonShine\Resources;
 
 
-use App\Models\ProductVolume;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
 
@@ -47,7 +46,7 @@ class ProductResource extends ModelResource
                 CategoryResource::class),
             Number::make('quantity'),
             BelongsTo::make('Volume', 'volume', fn($item) => $item->id . '-'. $item->name,
-                ProductVolumeResource::class
+                VolumeResource::class
             )
         ];
     }
@@ -70,7 +69,7 @@ class ProductResource extends ModelResource
                 CategoryResource::class),
             Number::make('quantity'),
             BelongsTo::make('Volume', 'volume', fn($item) => $item->id . '-'. $item->name,
-                ProductVolumeResource::class
+                VolumeResource::class
             )
         ];
     }
@@ -93,7 +92,7 @@ class ProductResource extends ModelResource
                 CategoryResource::class),
             Number::make('quantity'),
             BelongsTo::make('Volume', 'volume', fn($item) => $item->id . '-'. $item->name,
-                ProductVolumeResource::class
+                VolumeResource::class
             )
         ];
     }

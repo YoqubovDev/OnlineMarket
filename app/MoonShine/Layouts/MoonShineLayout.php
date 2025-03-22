@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Layouts;
 
-use App\MoonShine\Resources\BannersResource;
+use App\MoonShine\Resources\BannerResource;
 use MoonShine\Laravel\Layouts\AppLayout;
 use MoonShine\ColorManager\ColorManager;
 use MoonShine\Contracts\ColorManager\ColorManagerContract;
@@ -34,7 +34,6 @@ use MoonShine\UI\Components\{Breadcrumbs,
 use App\MoonShine\Resources\PostCategoryResource;
 use MoonShine\MenuManager\MenuItem;
 use App\MoonShine\Resources\PostResource;
-use App\MoonShine\Resources\ProductVolumeResource;
 use App\MoonShine\Resources\CategoryResource;
 use App\MoonShine\Resources\VolumeResource;
 use App\MoonShine\Resources\ProductResource;
@@ -55,11 +54,11 @@ final class MoonShineLayout extends AppLayout
             ...parent::menu(),
             MenuItem::make('Post Categories', PostCategoryResource::class),
             MenuItem::make('Posts', PostResource::class),
-            MenuItem::make('ProductVolume', ProductVolumeResource::class),
+            MenuItem::make('Volume', VolumeResource::class),
             MenuItem::make('Categories', CategoryResource::class),
             MenuItem::make('Products', ProductResource::class),
             MenuItem::make('Images', ImageResource::class),
-            MenuItem::make('Banner', BannersResource::class),
+            MenuItem::make('Banner', BannerResource::class),
         ];
     }
 

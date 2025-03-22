@@ -70,6 +70,7 @@ class HomeController extends Controller
             'parentCategories' => $parentCategories,
             'products' => $products,
             'productsMenu' => $productsMenu,
+            'insPosts'=>$insPosts,
         ]);
     }
 

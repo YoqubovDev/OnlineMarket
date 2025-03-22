@@ -1189,9 +1189,7 @@
 <!-- Quick view Modal -->
 <x-quick-view-modal></x-quick-view-modal>
 <!-- Newsletter Modal -->
-<x-newsletter-model></x-newsletter-model>
-<!-- Tools Sidebar -->
-<x-tools-sidebar></x-tools-sidebar>
+<x-newsletter-modal ></x-newsletter-modal>
 <!-- Back to top  -->
 <x-back-to-top></x-back-to-top>
 <!-- Plugins -->
