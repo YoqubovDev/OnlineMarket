@@ -1189,7 +1189,7 @@
 <!-- Quick view Modal -->
 <x-quick-view-modal></x-quick-view-modal>
 <!-- Newsletter Modal -->
-<x-newsletter-modal></x-newsletter-modal>
+<x-newsletter-model></x-newsletter-model>
 <!-- Tools Sidebar -->
 <x-tools-sidebar></x-tools-sidebar>
 <!-- Back to top  -->
